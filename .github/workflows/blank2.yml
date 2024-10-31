@@ -5,11 +5,10 @@ on:
     branches:
       - main
       - dev/*
-    branches-ignore:
-      - dev/staging # จะไม่รัน workflow เมื่อ push ขึ้น branch `dev/staging`
 
 jobs:
   Explore-GitHub-Actions:
+    if: github.ref != 'refs/heads/dev/staging' # ห้ามรันเมื่อเป็น branch `dev/staging`
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
